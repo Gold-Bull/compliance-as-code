@@ -47,4 +47,4 @@ ocil_clause: 'a remote time server is not configured'
 
 ocil: |-
     Run the following command and verify remote server is configured properly:
-    <pre># grep -E "^(server|pool)" {{{ chrony_conf_path }}}</pre>
+    <pre># grep -E "^(server|pool|refclock)" {{{ chrony_conf_path }}}</pre>

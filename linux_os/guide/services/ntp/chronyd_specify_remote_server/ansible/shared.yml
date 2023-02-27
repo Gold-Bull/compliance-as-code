@@ -5,11 +5,11 @@
 # disruption = low
 {{{ ansible_instantiate_variables("var_multiple_time_servers") }}}
 
-- name: "Detect if chrony is already configured with pools or servers"
+- name: "Detect if chrony is already configured with pools or servers or hardware reference clock"
   find:
     path: /etc
     patterns: chrony.conf
-    contains: '^[\s]*(?:server|pool)[\s]+[\w]+'
+    contains: '^[\s]*(?:server|pool|refclock)[\s]+[\w]+'
   register: chrony_servers
 
 - name: "Configure remote time servers"
