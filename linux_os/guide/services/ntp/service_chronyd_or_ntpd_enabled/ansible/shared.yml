@@ -1,3 +1,4 @@
+{{% set chrony_service_name = chrony_service_name|default('chronyd') -%}}
 # platform = Red Hat Enterprise Linux 7,Red Hat Enterprise Linux 8,Red Hat Virtualization 4,multi_platform_fedora,multi_platform_ol,multi_platform_sle
 # reboot = false
 # strategy = enable
@@ -17,9 +18,9 @@
   ignore_errors: yes
 
 
-- name: Start chronyd service if chrony or chronyd installed
+- name: Start {{{chrony_service_name}}} service if chrony or chronyd installed
   service:
-    name: "chronyd"
+    name: "{{{chrony_service_name}}}"
     enabled: "yes"
     state: "started"
     masked: "no"

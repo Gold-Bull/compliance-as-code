@@ -3,13 +3,14 @@
 # strategy = enable
 # complexity = low
 # disruption = low
+{{% set chrony_service_name = chrony_service_name|default('chronyd') -%}}
 if {{{ bash_package_installed("chrony") }}} ; then
     if ! /usr/sbin/pidof ntpd ; then
-        {{{ bash_service_command("enable", "chronyd") | indent(8) }}}
+        {{{ bash_service_command("enable", chrony_service_name) | indent(8) }}}
     fi
 elif {{{ bash_package_installed("ntp") }}} ; then
     {{{ bash_service_command("enable", "ntpd") | indent(4) }}}
 else
     {{{ bash_package_install("chrony") | indent(4) }}}
-    {{{ bash_service_command("enable", "chronyd") | indent(4) }}}
+    {{{ bash_service_command("enable", chrony_service_name) | indent(4) }}}
 fi

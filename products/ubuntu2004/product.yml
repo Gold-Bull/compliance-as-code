@@ -18,6 +18,7 @@ grub2_uefi_boot_path: "/boot/grub"
 aide_bin_path: "/usr/bin/aide.wrapper"
 aide_conf_path: "/etc/aide/aide.conf"
 chrony_conf_path: "/etc/chrony/chrony.conf"
+chrony_service_name: chrony
 
 cpes_root: "../../shared/applicability"
 cpes:

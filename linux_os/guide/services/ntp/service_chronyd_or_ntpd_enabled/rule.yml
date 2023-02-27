@@ -1,3 +1,4 @@
+{{% set chrony_service_name = chrony_service_name|default('chronyd') -%}}
 documentation_complete: true
 
 prodtype: alinux2,fedora,ol7,ol8,rhcos4,rhel7,rhel8,rhv4,sle12,sle15,ubuntu2004,ubuntu2204
@@ -5,13 +6,13 @@ prodtype: alinux2,fedora,ol7,ol8,rhcos4,rhel7,rhel8,rhv4,sle12,sle15,ubuntu2004,
 title: 'Enable the NTP Daemon'
 
 description: |-
-    {{{ ocil_service_enabled(service="chronyd") }}}
-    Note: The <tt>chronyd</tt> daemon is enabled by default.
+    {{{ ocil_service_enabled(service=chrony_service_name) }}}
+    Note: The <tt>{{{chrony_service_name}}}</tt> daemon is enabled by default.
     <br /><br />
     {{{ ocil_service_enabled(service="ntpd") }}}
     Note: The <tt>ntpd</tt> daemon is not enabled by default. Though as mentioned
     in the previous sections in certain environments the <tt>ntpd</tt> daemon might
-    be preferred to be used rather than the <tt>chronyd</tt> one. Refer to:
+    be preferred to be used rather than the <tt>{{{chrony_service_name}}}</tt> one. Refer to:
     {{% if product == "ol7" %}}
         {{{ weblink(link="https://docs.oracle.com/en/operating-systems/oracle-linux/7/network/ol7-nettime.html") }}}
     {{% elif product == "ol8" %}}
@@ -24,7 +25,7 @@ description: |-
     for guidance which NTP daemon to choose depending on the environment used.
 
 rationale: |-
-    Enabling some of <tt>chronyd</tt> or <tt>ntpd</tt> services ensures
+    Enabling some of <tt>{{{chrony_service_name}}}</tt> or <tt>ntpd</tt> services ensures
     that the NTP daemon will be running and that the system will synchronize its
     time to any servers specified. This is important whether the system is
     configured to be a client (and synchronize only its own clock) or it is also
@@ -32,7 +33,7 @@ rationale: |-
     authentication services such as Kerberos, but it is also important for
     maintaining accurate logs and auditing possible security breaches.
     <br /><br />
-    The <tt>chronyd</tt> and <tt>ntpd</tt> NTP daemons offer all of the
+    The <tt>{{{chrony_service_name}}}</tt> and <tt>ntpd</tt> NTP daemons offer all of the
     functionality of <tt>ntpdate</tt>, which is now deprecated.
 
 severity: medium
@@ -64,5 +65,5 @@ references:
     vmmsrg: SRG-OS-000356-VMM-001340
 
 ocil: |-
-    {{{ ocil_service_enabled(service="chronyd") }}}
+    {{{ ocil_service_enabled(service=chrony_service_name) }}}
     {{{ ocil_service_enabled(service="ntpd") }}}

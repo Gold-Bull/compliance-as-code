@@ -1,9 +1,10 @@
+{{% set chrony_service_name = chrony_service_name|default('chronyd') -%}}
 <def-group oval_version="5.11">
   <definition class="compliance" id="service_chronyd_or_ntpd_enabled" version="1">
     {{{ oval_metadata("At least one of the chronyd or ntpd services should be enabled if possible.") }}}
 
-    <criteria comment="chronyd or ntpd service enabled" operator="OR">
-      <extend_definition comment="service chronyd enabled" definition_ref="service_chronyd_enabled" />
+    <criteria comment="{{{chrony_service_name}}} or ntpd service enabled" operator="OR">
+      <extend_definition comment="service {{{chrony_service_name}}} enabled" definition_ref="service_chronyd_enabled" />
       <extend_definition comment="service ntpd enabled" definition_ref="service_ntpd_enabled" />
     </criteria>
 
