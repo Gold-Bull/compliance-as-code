@@ -567,3 +567,402 @@ controls:
           - l1_server
           - l1_workstation
         status: manual
+
+  - id: 2
+    title: Services
+    status: partial
+    controls:
+      - id: 2.1
+        title: Special Purpose Services
+        status: partial
+        controls:
+          - id: 2.1.1
+            title: Time Synchronization
+            status: automated
+            controls:
+              - id: 2.1.1.1
+                title: Ensure time synchronization is in use
+                status: manual
+              
+              - id: 2.1.1.2
+                title: Ensure systemd-timesyncd is configured
+                status: automated
+                rules:
+                  - package_timesyncd_installed
+                  - service_timesyncd_enabled
+
+              - id: 2.1.1.3
+                title: Ensure chrony is configured
+                status: automated
+                rules:
+                  - package_chrony_installed
+                  - service_chronyd_enabled
+                  - chronyd_run_as_chrony_user
+                  - chronyd_specify_remote_server
+
+              - id: 2.1.1.4
+                title: Ensure ntp is configured
+                status: automated
+                rules:
+                  - package_ntp_installed
+                  - service_ntp_enabled
+                  - ntpd_configure_restrictions
+                  - ntpd_run_as_ntp_user
+                  - ntpd_specify_multiple_servers
+                  - ntpd_specify_remote_server
+            
+          - id: 2.1.2
+            title: Ensure X Window System is not installed
+            status: automated
+            rules:
+              - package_xorg-x11-server-common_removed
+
+          - id: 2.1.3
+            title: Ensure Avahi Server is not installed
+            status: automated
+            rules:
+              - service_avahi-daemon_disabled
+
+          - id: 2.1.4
+            title: Ensure CUPS is not installed
+            status: automated
+            rules:
+              - service_cups_disabled
+              - package_cups_removed
+
+          - id: 2.1.5
+            title: Ensure DHCP Server is not installed
+            status: automated
+            rules:
+              - package_dhcp_removed
+
+          - id: 2.1.6
+            title: Ensure LDAP server is not installed
+            status: automated
+            rules:
+              - package_openldap-servers_removed
+
+          - id: 2.1.7
+            title: Ensure NFS is not installed
+            status: automated
+            rules:
+              - package_nfs-kernel-server_removed
+
+          - id: 2.1.8
+            title: Ensure DNS Server is not installed
+            status: automated
+            rules:
+              - package_bind_removed
+
+          - id: 2.1.9
+            title: Ensure FTP Server is not installed
+            status: automated
+            rules:
+              - package_vsftpd_removed
+
+          - id: 2.1.10
+            title: Ensure HTTP server is not installed
+            status: automated
+            rules:
+              - package_httpd_removed
+
+          - id: 2.1.11
+            title: Ensure IMAP and POP3 server are not installed
+            status: automated
+            rules:
+              - package_dovecot_removed
+
+          - id: 2.1.12
+            title: Ensure Samba is not installed
+            status: automated
+            rules:
+              - package_samba_removed
+
+          - id: 2.1.13
+            title: Ensure HTTP Proxy Server is not installed
+            status: automated
+            rules:
+              - package_squid_removed
+
+          - id: 2.1.14
+            title: Ensure SNMP Server is not installed
+            status: planned
+
+          - id: 2.1.15
+            title: Ensure mail transfer agent is configured for local-only mode
+            status: planned
+
+          - id: 2.1.16
+            title: Ensure rsync service is not installed
+            status: planned
+
+          - id: 2.1.17
+            title: Ensure NIS Server is not installed
+            status: planned
+
+      - id: 2.2
+        title: Service clients
+        status: partial
+          - id: 2.2.1
+            title: 
+            status: planned
+
+          - id: 2.2.2
+            title: 
+            status: planned
+
+          - id: 2.2.3
+            title: 
+            status: planned
+
+          - id: 2.2.4
+            title: 
+            status: planned
+
+          - id: 2.2.5
+            title: 
+            status: planned
+
+          - id: 2.2.6
+            title: 
+            status: planned
+
+      - id: 2.3
+        title: Ensure nonessential services are removed or masked
+        status: manual
+
+  - id: 3
+    title: Network Configuration
+    status: partial
+    controls:
+      - id: 3.1
+        title: Disable unused network protocols and devices
+        status: partial
+        controls:
+          - id: 3.1.1
+            title: Disable IPv6
+            status: planned
+
+          - id: 3.1.2
+            title: Ensure wireless interfaces are disabled
+            status: planned
+
+      - id: 3.2
+        title: Network Parameters (Host Only)
+        status: partial
+        controls:
+          - id: 3.2.1
+            title: Ensure packet redirect sending is disabled
+            status: planned
+
+          - id: 3.2.2
+            title: Ensure IP forwarding is disabled
+            status: planned
+
+      - id: 3.3
+        title: Network Parameters (Host and Router)
+        status: partial
+        controls:
+          - id: 3.3.1
+            title: Ensure source routed packets are not accepted
+            status: planned
+
+          - id: 3.3.2
+            title: Ensure ICMP redirects are not accepted
+            status: planned
+
+          - id: 3.3.3
+            title: Ensure secure ICMP redirects are not accepted
+            status: planned
+
+          - id: 3.3.4
+            title: Ensure suspicious packets are logged
+            status: planned
+
+          - id: 3.3.5
+            title: Ensure broadcast ICMP requests are ignored
+            status: planned
+
+          - id: 3.3.6
+            title: Ensure bogus ICMP responses are ignored
+            status: planned
+
+          - id: 3.3.7
+            title: Ensure Reverse Path Filtering is enabled
+            status: planned
+
+          - id: 3.3.8
+            title: Ensure TCP SYN Cookies is enabled
+            status: planned
+
+          - id: 3.3.9
+            title: Ensure IPv6 router advertisements are not accepted
+            status: planned
+
+      - id: 3.4
+        title: Uncommon Network Protocols
+        status: partial
+        controls:
+          - id: 3.4.1
+            title: Ensure DCCP is disabled
+            status: planned
+
+          - id: 3.4.2
+            title: Ensure SCTP is disabled
+            status: planned
+
+          - id: 3.4.3
+            title: Ensure RDS is disabled
+            status: planned
+
+          - id: 3.4.4
+            title: Ensure TIPC is disabled
+            status: planned
+
+      - id: 3.5
+        title: Firewall Configuration
+        status: partial
+        controls:
+          - id: 3.5.1
+            title: Configure UncomplicatedFirewall
+            status: planned
+
+          - id: 3.5.2
+            title: Configure nftables
+            status: planned
+
+          - id: 3.5.3
+            title: Configure iptables
+            status: planned
+
+  - id: 4
+    title: Logging and Auditing
+    status: partial
+    controls:
+      - id: 4.1
+        title: Configure System Accounting (auditd)
+        status: partial
+        controls:
+          - id: 4.1.1
+            title: 
+            status: planned
+
+          - id: 4.1.2
+            title: 
+            status: planned
+
+          - id: 4.1.3
+            title: 
+            status: planned
+
+          - id: 4.1.4
+            title: 
+            status: planned
+
+          - id: 4.1.5
+            title: 
+            status: planned
+
+          - id: 4.1.6
+            title: 
+            status: planned
+
+          - id: 4.1.7
+            title: 
+            status: planned
+
+          - id: 4.1.8
+            title: 
+            status: planned
+
+          - id: 4.1.9
+            title: 
+            status: planned
+
+          - id: 4.1.10
+            title: 
+            status: planned
+
+          - id: 4.1.11
+            title: 
+            status: planned
+
+          - id: 4.1.12
+            title: 
+            status: planned
+
+          - id: 4.1.13
+            title: 
+            status: planned
+
+          - id: 4.1.14
+            title: 
+            status: planned
+
+          - id: 4.1.15
+            title: 
+            status: planned
+
+          - id: 4.1.16
+            title: 
+            status: planned
+
+          - id: 4.1.17
+            title: 
+            status: planned
+
+      - id: 4.2
+        title: 
+        status: planned
+
+      - id: 4.3
+        title: 
+        status: planned
+
+      - id: 4.4
+        title: 
+        status: planned
+
+  - id: 5
+    title: Access, Authentication and Authorization
+    status: partial
+    controls:
+      - id: 5.1
+        title: 
+        status: planned
+
+      - id: 5.2
+        title: 
+        status: planned
+
+      - id: 5.3
+        title: 
+        status: planned
+
+      - id: 5.4
+        title: 
+        status: planned
+
+      - id: 5.5
+        title: 
+        status: planned
+
+      - id: 5.6
+        title: 
+        status: planned
+
+      - id: 5.7
+        title: 
+        status: planned
+
+  - id: 6
+    title: System Maintenance
+    status: partial
+    controls:
+      - id: 6.1
+        title: 
+        status: planned
+
+      - id: 6.2
+        title: 
+        status: planned
