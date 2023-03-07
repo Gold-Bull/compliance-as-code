@@ -39,3 +39,4 @@ template:
     vars:
         servicename: ip6tables
         packagename: iptables-ipv6
+        packagename@ubuntu2004: iptables-persistent

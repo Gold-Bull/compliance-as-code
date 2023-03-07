@@ -1,0 +1,38 @@
+documentation_complete: true
+
+prodtype: ubuntu2004
+
+title: 'Firewall configuration'
+
+description: |-
+    {{{ describe_package_install(package="ufw") }}}
+    <br/><b>OR</b><br/>
+    {{{ describe_package_install(package="nftables") }}}
+    <br/><b>OR</b><br/>
+    {{{ describe_package_install(package="iptables") }}}
+    {{{ describe_package_install(package="iptables-services") }}}
+
+rationale: |-
+    <tt>ufw</tt> controls the Linux kernel network packet filtering
+    code. <tt>ufw</tt> allows system operators to set up firewalls and IP
+    masquerading, etc.
+    <br/>
+    <tt>nftables</tt> is a subsystem of the Linux kernel that can protect against threats
+    originating from within a corporate network to include malicious mobile code and poorly
+    configured software on a host.
+    <br/>
+    <tt>iptables</tt> controls the Linux kernel network packet filtering
+    code. <tt>iptables</tt> allows system operators to set up firewalls and IP
+    masquerading, etc.
+
+severity: medium
+
+references:
+    cis@ubuntu2004: '3.5'
+
+ocil_clause: 'Firewall is not configured'
+
+ocil: |-
+    {{{ ocil_service_enabled(service="ufw") }}}
+    {{{ ocil_service_enabled(service="nftables") }}}
+    {{{ ocil_service_enabled(service="systemd-timesyncd") }}}

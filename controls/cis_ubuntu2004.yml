@@ -929,17 +929,12 @@ controls:
       - l2_workstation
     status: planned
 
-  - id: 3.5.1
-    title: Configure UncomplicatedFirewall
-    status: planned
+  - id: 3.5
+    title: Firewall Configuration
+    status: automated
+    rules:
+      - firewall_configuration_enabled
 
-  - id: 3.5.2
-    title: Configure nftables
-    status: planned
-
-  - id: 3.5.3
-    title: Configure iptables
-    status: planned
 #
 #  - id: 4
 #    title: Logging and Auditing

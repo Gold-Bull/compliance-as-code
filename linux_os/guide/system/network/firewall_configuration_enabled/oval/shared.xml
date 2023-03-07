@@ -1,0 +1,23 @@
+<def-group oval_version="5.11">
+  <definition class="compliance" id="firewall_configuration_enabled" version="1">
+    {{{ oval_metadata("At least one of the ufw or nftables or iptables services should be enabled if possible.") }}}
+
+    <criteria comment="ufw or nftables or iptables service enabled" operator="OR">
+      <criteria comment="ufw service configured" operator="AND">
+        <extend_definition definition_ref="package_ufw_installed" />
+        <extend_definition definition_ref="service_ufw_enabled" />
+      </criteria>
+      <criteria comment="nftables service configured" operator="AND">
+        <extend_definition definition_ref="package_nftables_installed" />
+        <extend_definition definition_ref="service_nftables_enabled" />
+      </criteria>
+      <criteria comment="iptables service configured" operator="AND">
+        <extend_definition definition_ref="package_iptables_installed" />
+        <extend_definition definition_ref="package_iptables-services_installed" />
+        <extend_definition definition_ref="service_iptables_enabled" />
+        <extend_definition definition_ref="service_ip6tables_enabled" />
+      </criteria>
+    </criteria>
+
+  </definition>
+</def-group>

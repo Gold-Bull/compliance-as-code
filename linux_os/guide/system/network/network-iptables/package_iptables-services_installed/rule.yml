@@ -1,6 +1,6 @@
 documentation_complete: true
 
-prodtype: rhel8
+prodtype: rhel8,ubuntu2004
 
 title: 'Install iptables-services Package'
 
@@ -20,6 +20,7 @@ identifiers:
 
 references:
     cis@rhel8: 3.4.3.1.1
+    cis@ubuntu2004: 3.5.3.1.1
     nist: CM-6(a)
     srg: SRG-OS-000480-GPOS-00227
 
@@ -31,3 +32,4 @@ template:
     name: package_installed
     vars:
         pkgname: iptables-services
+        pkgname@ubuntu2004: iptables-persistent
