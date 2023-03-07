@@ -678,21 +678,39 @@ controls:
     rules:
       - package_squid_removed
 
-#  - id: 2.1.14
-#    title: Ensure SNMP Server is not installed
-#    status: planned
-#
-#  - id: 2.1.15
-#    title: Ensure mail transfer agent is configured for local-only mode
-#    status: planned
-#
-#  - id: 2.1.16
-#    title: Ensure rsync service is not installed
-#    status: planned
-#
-#  - id: 2.1.17
-#    title: Ensure NIS Server is not installed
-#    status: planned
+  - id: 2.1.14
+    title: Ensure SNMP Server is not installed
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - package_net-snmp_removed
+
+  - id: 2.1.15
+    title: Ensure mail transfer agent is configured for local-only mode
+    levels:
+      - l1_server
+      - l1_workstation
+    status: planned
+
+  - id: 2.1.16
+    title: Ensure rsync service is not installed
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - package_rsync_removed
+
+  - id: 2.1.17
+    title: Ensure NIS Server is not installed
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - package_nis_removed
 
 #      - id: 2.2
 #        title: Service clients
