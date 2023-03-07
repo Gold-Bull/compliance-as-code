@@ -1,0 +1,37 @@
+{{% set chrony_service_name = chrony_service_name|default('chronyd') -%}}
+documentation_complete: true
+
+prodtype: ubuntu2004
+
+title: 'Ensure time synchronization is in use'
+
+description: |-
+    System time should be synchronized between all systems in an environment.
+    This is typically done by establishing an authoritative time server or
+    set of servers and having all systems synchronize their clocks to them.
+    <br /><br />
+    {{{ describe_package_install(package="chrony") }}}
+    {{{ ocil_service_enabled(service=chrony_service_name) }}}
+    <br /><b>OR</b><br />
+    {{{ describe_package_install(package="ntp") }}}
+    {{{ ocil_service_enabled(service="ntpd") }}}
+    <br /><b>OR</b><br />
+    {{{ describe_package_install(package="systemd-timesyncd") }}}
+    {{{ ocil_service_enabled(service="systemd-timesyncd") }}}
+
+rationale: |-
+    Time synchronization is important to support time sensitive security mechanisms like Kerberos
+    and also ensures log files have consistent time records across the enterprise,
+    which aids in forensic investigations.
+
+severity: medium
+
+platform: machine  # The check uses service_... extended definition, which doesnt support offline mode
+
+references:
+    cis@ubuntu2004: 2.1.1.1
+
+ocil: |-
+    {{{ ocil_service_enabled(service=chrony_service_name) }}}
+    {{{ ocil_service_enabled(service="ntpd") }}}
+    {{{ ocil_service_enabled(service="systemd-timesyncd") }}}

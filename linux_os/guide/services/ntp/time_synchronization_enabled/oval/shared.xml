@@ -1,0 +1,28 @@
+{{% set chrony_service_name = chrony_service_name|default('chronyd') -%}}
+<def-group oval_version="5.11">
+  <definition class="compliance" id="time_synchronization_enabled" version="1">
+    {{{ oval_metadata("At least one of the chronyd or ntpd or timesyncd services should be enabled if possible.") }}}
+
+    <criteria comment="{{{chrony_service_name}}} or ntpd or timesyncd service enabled" operator="OR">
+      <criteria comment="{{{chrony_service_name}}} service configured" operator="AND">
+        <extend_definition definition_ref="package_chrony_installed" />
+        <extend_definition definition_ref="service_chronyd_enabled" />
+        <extend_definition definition_ref="chronyd_specify_remote_server" />
+        <extend_definition definition_ref="chronyd_run_as_chrony_user" />
+      </criteria>
+      <criteria comment="ntpd service configured" operator="AND">
+        <extend_definition definition_ref="package_ntp_installed" />
+        <extend_definition definition_ref="service_ntpd_enabled" />
+        <extend_definition definition_ref="ntpd_run_as_ntp_user" />
+        <extend_definition definition_ref="ntpd_specify_multiple_servers" />
+        <extend_definition definition_ref="ntpd_specify_remote_server" />
+        <extend_definition definition_ref="ntpd_configure_restrictions" />
+      </criteria>
+      <criteria comment="timesyncd service configured" operator="AND">
+        <extend_definition definition_ref="package_timesyncd_installed" />
+        <extend_definition definition_ref="service_timesyncd_enabled" />
+      </criteria>
+    </criteria>
+
+  </definition>
+</def-group>
