@@ -30,7 +30,7 @@ references:
     cis@rhel9: 2.3.2
     cis@sle12: 2.3.5
     cis@sle15: 2.3.5
-    cis@ubuntu2004: 2.3.5
+    cis@ubuntu2004: 2.2.5
     cis@ubuntu2204: 2.3.5
     pcidss: Req-2.2.4
 

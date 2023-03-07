@@ -712,140 +712,234 @@ controls:
     rules:
       - package_nis_removed
 
-#      - id: 2.2
-#        title: Service clients
-#        status: partial
-#          - id: 2.2.1
-#            title: Ensure NIS Client is not installed
-#            status: planned
-#
-#          - id: 2.2.2
-#            title: Ensure rsh client is not installed
-#            status: planned
-#
-#          - id: 2.2.3
-#            title: Ensure talk client is not installed
-#            status: planned
-#
-#          - id: 2.2.4
-#            title: Ensure telnet client is not installed
-#            status: planned
-#
-#          - id: 2.2.5
-#            title: Ensure LDAP client is not installed
-#            status: planned
-#
-#          - id: 2.2.6
-#            title: Ensure RPC is not installed
-#            status: planned
-#
-#      - id: 2.3
-#        title: Ensure nonessential services are removed or masked
-#        status: manual
-#
-#  - id: 3
-#    title: Network Configuration
-#    status: partial
-#    controls:
-#      - id: 3.1
-#        title: Disable unused network protocols and devices
-#        status: partial
-#        controls:
-#          - id: 3.1.1
-#            title: Disable IPv6
-#            status: planned
-#
-#          - id: 3.1.2
-#            title: Ensure wireless interfaces are disabled
-#            status: planned
-#
-#      - id: 3.2
-#        title: Network Parameters (Host Only)
-#        status: partial
-#        controls:
-#          - id: 3.2.1
-#            title: Ensure packet redirect sending is disabled
-#            status: planned
-#
-#          - id: 3.2.2
-#            title: Ensure IP forwarding is disabled
-#            status: planned
-#
-#      - id: 3.3
-#        title: Network Parameters (Host and Router)
-#        status: partial
-#        controls:
-#          - id: 3.3.1
-#            title: Ensure source routed packets are not accepted
-#            status: planned
-#
-#          - id: 3.3.2
-#            title: Ensure ICMP redirects are not accepted
-#            status: planned
-#
-#          - id: 3.3.3
-#            title: Ensure secure ICMP redirects are not accepted
-#            status: planned
-#
-#          - id: 3.3.4
-#            title: Ensure suspicious packets are logged
-#            status: planned
-#
-#          - id: 3.3.5
-#            title: Ensure broadcast ICMP requests are ignored
-#            status: planned
-#
-#          - id: 3.3.6
-#            title: Ensure bogus ICMP responses are ignored
-#            status: planned
-#
-#          - id: 3.3.7
-#            title: Ensure Reverse Path Filtering is enabled
-#            status: planned
-#
-#          - id: 3.3.8
-#            title: Ensure TCP SYN Cookies is enabled
-#            status: planned
-#
-#          - id: 3.3.9
-#            title: Ensure IPv6 router advertisements are not accepted
-#            status: planned
-#
-#      - id: 3.4
-#        title: Uncommon Network Protocols
-#        status: partial
-#        controls:
-#          - id: 3.4.1
-#            title: Ensure DCCP is disabled
-#            status: planned
-#
-#          - id: 3.4.2
-#            title: Ensure SCTP is disabled
-#            status: planned
-#
-#          - id: 3.4.3
-#            title: Ensure RDS is disabled
-#            status: planned
-#
-#          - id: 3.4.4
-#            title: Ensure TIPC is disabled
-#            status: planned
-#
-#      - id: 3.5
-#        title: Firewall Configuration
-#        status: partial
-#        controls:
-#          - id: 3.5.1
-#            title: Configure UncomplicatedFirewall
-#            status: planned
-#
-#          - id: 3.5.2
-#            title: Configure nftables
-#            status: planned
-#
-#          - id: 3.5.3
-#            title: Configure iptables
-#            status: planned
+  - id: 2.2.1
+    title: Ensure NIS Client is not installed
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - package_nis_removed
+
+  - id: 2.2.2
+    title: Ensure rsh client is not installed
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - package_rsh_removed
+
+  - id: 2.2.3
+    title: Ensure talk client is not installed
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - package_talk_removed
+
+  - id: 2.2.4
+    title: Ensure telnet client is not installed
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - package_telnet_removed
+
+  - id: 2.2.5
+    title: Ensure LDAP client is not installed
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - package_openldap-clients_removed
+
+  - id: 2.2.6
+    title: Ensure RPC is not installed
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - package_rpcbind_removed
+
+  - id: 2.3
+    title: Ensure nonessential services are removed or masked
+    levels:
+      - l1_server
+      - l1_workstation
+    status: manual
+
+  - id: 3.1.1
+    title: Disable IPv6
+    levels:
+      - l2_server
+      - l2_workstation
+    status: planned
+
+  - id: 3.1.2
+    title: Ensure wireless interfaces are disabled
+    levels:
+      - l1_server
+      - l2_workstation
+    status: automated
+    rules:
+      - wireless_disable_interfaces
+
+  - id: 3.2.1
+    title: Ensure packet redirect sending is disabled
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - sysctl_net_ipv4_conf_all_send_redirects
+      - sysctl_net_ipv4_conf_default_send_redirects
+
+  - id: 3.2.2
+    title: Ensure IP forwarding is disabled
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - sysctl_net_ipv4_ip_forward
+      - sysctl_net_ipv6_conf_all_forwarding
+
+
+  - id: 3.3.1
+    title: Ensure source routed packets are not accepted
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - sysctl_net_ipv4_conf_all_accept_source_route
+      - sysctl_net_ipv4_conf_default_accept_source_route
+      - sysctl_net_ipv6_conf_all_accept_source_route
+      - sysctl_net_ipv6_conf_default_accept_source_route
+
+  - id: 3.3.2
+    title: Ensure ICMP redirects are not accepted
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - sysctl_net_ipv4_conf_all_accept_redirects
+      - sysctl_net_ipv4_conf_default_accept_redirects
+      - sysctl_net_ipv6_conf_all_accept_redirects
+      - sysctl_net_ipv6_conf_default_accept_redirects
+
+  - id: 3.3.3
+    title: Ensure secure ICMP redirects are not accepted
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - sysctl_net_ipv4_conf_all_secure_redirects
+      - sysctl_net_ipv4_conf_default_secure_redirects
+
+  - id: 3.3.4
+    title: Ensure suspicious packets are logged
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - sysctl_net_ipv4_conf_all_log_martians
+      - sysctl_net_ipv4_conf_default_log_martians
+
+  - id: 3.3.5
+    title: Ensure broadcast ICMP requests are ignored
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - sysctl_net_ipv4_icmp_echo_ignore_broadcasts
+
+  - id: 3.3.6
+    title: Ensure bogus ICMP responses are ignored
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - sysctl_net_ipv4_icmp_ignore_bogus_error_responses
+
+  - id: 3.3.7
+    title: Ensure Reverse Path Filtering is enabled
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - sysctl_net_ipv4_conf_all_rp_filter
+      - sysctl_net_ipv4_conf_default_rp_filter
+
+  - id: 3.3.8
+    title: Ensure TCP SYN Cookies is enabled
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - sysctl_net_ipv4_tcp_syncookies
+
+  - id: 3.3.9
+    title: Ensure IPv6 router advertisements are not accepted
+    levels:
+      - l1_server
+      - l1_workstation
+    status: automated
+    rules:
+      - sysctl_net_ipv6_conf_all_accept_ra
+      - sysctl_net_ipv6_conf_default_accept_ra
+
+  - id: 3.4.1
+    title: Ensure DCCP is disabled
+    levels:
+      - l2_server
+      - l2_workstation
+    status: planned
+
+  - id: 3.4.2
+    title: Ensure SCTP is disabled
+    levels:
+      - l2_server
+      - l2_workstation
+    status: planned
+
+  - id: 3.4.3
+    title: Ensure RDS is disabled
+    levels:
+      - l2_server
+      - l2_workstation
+    status: planned
+
+  - id: 3.4.4
+    title: Ensure TIPC is disabled
+    levels:
+      - l2_server
+      - l2_workstation
+    status: planned
+
+  - id: 3.5.1
+    title: Configure UncomplicatedFirewall
+    status: planned
+
+  - id: 3.5.2
+    title: Configure nftables
+    status: planned
+
+  - id: 3.5.3
+    title: Configure iptables
+    status: planned
 #
 #  - id: 4
 #    title: Logging and Auditing
